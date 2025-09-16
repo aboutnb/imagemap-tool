@@ -16,13 +16,13 @@ export const APP_CONFIG = {
     version: '1.0.0',
     repository: {
       type: 'github',
-      url: 'https://github.com/aboutnb/imagemap-editor',
+      url: 'https://github.com/aboutnb/imagemap-tool',
     },
   },
   
   // 社交链接
   social: {
-    github: 'https://github.com/yourusername',
+    github: 'https://github.com/aboutnb',
     twitter: 'https://twitter.com/yourusername', // 可选
     linkedin: 'https://linkedin.com/in/yourusername', // 可选
   },

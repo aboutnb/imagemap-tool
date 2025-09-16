@@ -1,0 +1,38 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#8B5CF6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4F46E5;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#FFFFFF;stop-opacity:0.7" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Rounded background -->
+  <rect width="32" height="32" rx="8" ry="8" fill="url(#bgGradient)" />
+  
+  <!-- Main icon content -->
+  <g transform="translate(6, 6)">
+    <!-- Image frame -->
+    <rect x="2" y="2" width="16" height="12" rx="1.5" ry="1.5" 
+          stroke="url(#iconGradient)" stroke-width="1.5" fill="none" />
+    
+    <!-- Mountain/content inside -->
+    <path d="M2 12l3-3 3 3 4.5-4.5 3.5 3.5" 
+          stroke="url(#iconGradient)" stroke-width="1.2" 
+          stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    
+    <!-- Interactive points -->
+    <circle cx="6" cy="6" r="1.2" fill="rgba(255,255,255,0.8)" />
+    <circle cx="13" cy="8" r="1.2" fill="rgba(255,255,255,0.8)" />
+    <circle cx="9.5" cy="5" r="1.2" fill="rgba(255,255,255,0.8)" />
+  </g>
+  
+  <!-- Subtle highlight -->
+  <rect width="32" height="32" rx="8" ry="8" 
+        fill="url(#iconGradient)" opacity="0.1" />
+</svg>

@@ -10,26 +10,16 @@ interface Area {
 }
 
 interface AreaPropertiesEditorProps {
-  area: Area | null
+  area: Area
   onUpdate: (updates: Partial<Area>) => void
   onClose: () => void
 }
 
 export function AreaPropertiesEditor({ area, onUpdate, onClose }: AreaPropertiesEditorProps) {
-  const [formData, setFormData] = useState({
-    href: '',
-    alt: '',
-    title: ''
-  })
+  const [formData, setFormData] = useState({ href: '', alt: '', title: '' })
 
   useEffect(() => {
-    if (area) {
-      setFormData({
-        href: area.href,
-        alt: area.alt,
-        title: area.title
-      })
-    }
+    setFormData({ href: area.href, alt: area.alt, title: area.title })
   }, [area])
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -38,84 +28,70 @@ export function AreaPropertiesEditor({ area, onUpdate, onClose }: AreaProperties
     onClose()
   }
 
-  if (!area) return null
-
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
-      <div className="bg-white dark:bg-slate-800 rounded-lg p-6 w-full max-w-md mx-4 border border-gray-200 dark:border-white/20">
-        <div className="flex justify-between items-center mb-4">
-          <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Edit Area Properties</h3>
-          <button
-            onClick={onClose}
-            className="text-gray-400 dark:text-gray-400 hover:text-gray-600 dark:hover:text-white transition-colors"
+    <div 
+      className="fixed inset-0 flex items-center justify-center z-50 p-4"
+      style={{ background: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(4px)' }}
+    >
+      <div className="card w-full max-w-md">
+        <div 
+          className="px-4 py-3 flex items-center justify-between"
+          style={{ borderBottom: '1px solid var(--bg-border)' }}
+        >
+          <span className="font-medium">Edit Area</span>
+          <button 
+            onClick={onClose} 
+            className="p-1 transition-colors"
+            style={{ color: 'var(--text-muted)' }}
           >
-            ✕
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="p-4 space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Link URL (href)
-            </label>
+            <label className="block text-sm mb-1.5" style={{ color: 'var(--text-secondary)' }}>Link URL</label>
             <input
               type="text"
               value={formData.href}
-              onChange={(e) => setFormData(prev => ({ ...prev, href: e.target.value }))}
-              className="w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              onChange={(e) => setFormData(p => ({ ...p, href: e.target.value }))}
+              className="input"
               placeholder="https://example.com"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Alt Text
-            </label>
+            <label className="block text-sm mb-1.5" style={{ color: 'var(--text-secondary)' }}>Alt Text</label>
             <input
               type="text"
               value={formData.alt}
-              onChange={(e) => setFormData(prev => ({ ...prev, alt: e.target.value }))}
-              className="w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Description for accessibility"
+              onChange={(e) => setFormData(p => ({ ...p, alt: e.target.value }))}
+              className="input"
+              placeholder="Description"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Title (tooltip)
-            </label>
+            <label className="block text-sm mb-1.5" style={{ color: 'var(--text-secondary)' }}>Tooltip</label>
             <input
               type="text"
               value={formData.title}
-              onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
-              className="w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Tooltip text"
+              onChange={(e) => setFormData(p => ({ ...p, title: e.target.value }))}
+              className="input"
+              placeholder="Hover text"
             />
           </div>
 
-          <div className="pt-4 space-y-2">
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              <strong>Shape:</strong> {area.shape}
-            </p>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              <strong>Coordinates:</strong> {area.coords.join(', ')}
-            </p>
+          <div className="pt-2 text-sm" style={{ color: 'var(--text-muted)' }}>
+            <p><span style={{ color: 'var(--text-secondary)' }}>Shape:</span> {area.shape}</p>
+            <p><span style={{ color: 'var(--text-secondary)' }}>Coords:</span> {area.coords.join(', ')}</p>
           </div>
 
-          <div className="flex gap-3 pt-4">
-            <button
-              type="submit"
-              className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-            >
-              Save Changes
-            </button>
-            <button
-              type="button"
-              onClick={onClose}
-              className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
-            >
-              Cancel
-            </button>
+          <div className="flex gap-3 pt-2">
+            <button type="submit" className="btn btn-primary flex-1">Save</button>
+            <button type="button" onClick={onClose} className="btn btn-secondary">Cancel</button>
           </div>
         </form>
       </div>

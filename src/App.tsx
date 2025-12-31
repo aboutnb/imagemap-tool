@@ -1,35 +1,45 @@
-import { ImageMapEditor, ThemeToggle, Logo, Footer } from './components'
+import { ImageMapEditor, ThemeToggle, Footer } from './components'
 import { APP_CONFIG } from './config/app'
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors flex flex-col">
-      <div className="flex-1 overflow-auto">
-        <div className="max-w-7xl mx-auto">
-          {/* Header */}
-          <header className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 py-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-6">
-                <Logo />
-                <div className="border-l border-gray-200 dark:border-gray-600 pl-6">
-                  <p className="text-sm text-gray-600 dark:text-gray-300">
-                    Create interactive HTML image maps
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <ThemeToggle />
-              </div>
+    <div className="min-h-screen flex flex-col" style={{ background: 'var(--bg)', color: 'var(--text-primary)' }}>
+      {/* Header */}
+      <header style={{ borderBottom: '1px solid var(--bg-border)' }}>
+        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: 'var(--accent)' }}>
+              <svg className="w-5 h-5 text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <circle cx="8" cy="8" r="1.5" fill="currentColor"/>
+                <path d="M21 15l-5-5L5 21"/>
+              </svg>
             </div>
-          </header>
+            <span className="text-lg font-semibold">ImageMap</span>
+          </div>
+          <ThemeToggle />
+        </div>
+      </header>
 
-          {/* Main Content */}
-          <main className="p-6">
-            <ImageMapEditor />
-          </main>
+      {/* Hero */}
+      <div style={{ borderBottom: '1px solid var(--bg-border)' }}>
+        <div className="max-w-6xl mx-auto px-6 py-16 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            Create Image Maps
+          </h1>
+          <p className="text-lg max-w-xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
+            Draw interactive areas on images and generate HTML code instantly.
+          </p>
         </div>
       </div>
-      
+
+      {/* Main */}
+      <main className="flex-1">
+        <div className="max-w-6xl mx-auto px-6 py-8">
+          <ImageMapEditor />
+        </div>
+      </main>
+
       {/* Footer */}
       <Footer 
         author={APP_CONFIG.author.name}

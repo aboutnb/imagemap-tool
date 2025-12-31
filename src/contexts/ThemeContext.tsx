@@ -16,8 +16,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     if (saved === 'light' || saved === 'dark') {
       return saved
     }
-    // 检查系统偏好
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    // 默认浅色主题
+    return 'light'
   })
 
   useEffect(() => {
